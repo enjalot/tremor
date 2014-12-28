@@ -1,0 +1,7 @@
+{
+  "NODE_ENV": "development",
+  "PORT": 4001,
+  "MONGO_URL": "mongodb://localhost:27017/tremor",
+  "SESSION_SECRET": "a78bfd8d34aefe2072ed90e46a54dd4b11dfd3ba",
+  "SESSION_COOKIE": "5fc9243194968659bdbcb33f20cacce0d1beb19a"
+}

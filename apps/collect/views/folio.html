@@ -1,0 +1,17 @@
+<index:>
+  <div class="divtest" on-touchend="touched()">FOLIO: test {{test}}
+  <br>
+  <button on-click="clear()">CLEAR</button>
+  </div>
+  <svg as="canvas" class="canvas" width=800px height=1500px 
+    on-touchstart="touch($event)"
+    on-touchmove="touching($event)"
+    on-touchend="touched($event)">
+    {{each marks as #mark}}
+      <rect class="mark"
+        x="{{#mark.x - #mark.w/2}}"
+        y="{{#mark.y - #mark.h/2}}"
+        width="{{#mark.w}}"
+        height="{{#mark.h}}"></rect>
+    {{/each}}
+  </svg>

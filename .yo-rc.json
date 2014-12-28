@@ -1,0 +1,9 @@
+{
+  "generator-derby": {
+    "project": "tremor",
+    "apps": [
+      "collect"
+    ],
+    "coffee": true
+  }
+}
