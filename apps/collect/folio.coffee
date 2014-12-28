@@ -2,6 +2,15 @@ app = require './index'
 
 module.exports = class Folio
   init: ->
+    folioId = @model.root.get "$render.params.folioId"
+    manuscriptId = @model.root.get "$render.params.manuscriptId"
+    @model.set "folioId", folioId
+    @model.set "manuscriptId", manuscriptId
+
+    # get a local reference to this folio
+    @folio = @model.at "folio"
+    @model.ref "folio", @model.scope("folios.#{folioId}")
+
     @model.set 'test', 0
     @marks = @model.at 'marks'
     @marks.setNull []
@@ -10,6 +19,7 @@ module.exports = class Folio
     @scrollStart.set 0
 
   create: ->
+    window.PAGE = @
 
   clear: ->
     @marks.set []

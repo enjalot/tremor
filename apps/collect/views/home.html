@@ -1,4 +1,12 @@
 <index:>
-  <p>Home</p>
+  <div class="manuscripts">
+    {{each manis as #manuscript}}
+      <a class="manuscript" href="/folios/{{#manuscript.id}}">
+        <h1>{{#manuscript.id}}</h1>
+        {{#manuscript.folios}} folios
+      </a>
+    {{/each}}
+
+  </div>
 
   
