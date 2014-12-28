@@ -3,28 +3,16 @@
     <h1>{{manuscriptId}} - folio {{folio.index}}{{folio.side}}</h1>
   </div>
 
-  <div class="img-container">
-  <img src="https://s3.amazonaws.com/medieval/tremor/{{manuscriptId}}/folio{{folio.index}}{{folio.side}}.png">
-  </div>
-
-  <svg as="canvas" class="canvas" width=800px height=1500px 
+  <div class="img-container" as="container"
+    on-click="clicked($event)"
     on-touchstart="touch($event)"
     on-touchmove="touching($event)"
     on-touchend="touched($event)">
-    <!--
-    <image 
-      xlink:href="https://s3.amazonaws.com/medieval/tremor/{{manuscriptId}}/folio{{folio.index}}{{folio.side}}.png"
-      x="0"
-      y="0"
-      width="100%"
-      height="100%"
-      ></image>
-    -->
+    <img src="https://s3.amazonaws.com/medieval/tremor/{{manuscriptId}}/{{folio.index}}{{folio.side}}.png">
+    
+
     {{each marks as #mark}}
-      <rect class="mark"
-        x="{{#mark.x - #mark.w/2}}"
-        y="{{#mark.y - #mark.h/2}}"
-        width="{{#mark.w}}"
-        height="{{#mark.h}}"></rect>
+      <div class="mark" style="left:{{#mark.x-#mark.w/2}}px;top:{{#mark.y-#mark.h/2}}px;width:{{#mark.w}}px;height:{{#mark.h}}px;">
+      </div>
     {{/each}}
-  </svg>
+  </div>

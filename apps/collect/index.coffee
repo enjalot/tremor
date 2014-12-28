@@ -30,7 +30,6 @@ app.get '/folios/:manuscriptId/:folioId', (page, model, params, next) ->
   folioQuery = model.query "folios", {_id: params.folioId}
   model.fetch folioQuery, "manuscripts.#{params.manuscriptId}", (err) ->
     console.log err if err
-    console.log "folios", model.get "folios"
     page.render 'folio'
 
 app.on 'ready', (page) ->

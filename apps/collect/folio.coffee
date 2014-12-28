@@ -34,6 +34,7 @@ module.exports = class Folio
       @scrolling.set true
 
   touched: ($evt) ->
+    console.log "EVT", $evt
     return unless $evt
     if @scrolling.get()
       if $evt.touches.length == 0
@@ -48,8 +49,11 @@ module.exports = class Folio
     # can't seem to get touch events on svg from derby right now.
     # so we just account for the offsets
     @model.push "marks", {
-      x: touch.pageX - @canvas.offsetLeft
-      y: touch.pageY - @canvas.offsetTop 
+      x: touch.pageX# - @container.offsetLeft
+      y: touch.pageY# - @container.offsetTop 
       w: 40
       h: 40
     }
+
+  clicked: ($evt) ->
+    #console.log "MOUSE", $evt
