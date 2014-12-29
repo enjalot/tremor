@@ -16,14 +16,16 @@ module.exports = class Folio
 
     @model.set 'test', 0
     @marks = @model.at 'marks'
-    #@filter = @model.root.filter("marks", (mark) -> mark?.folioId == folioId).sort((a,b) -> b.createdAt - a.createdAt)
-    #@model.ref 'marks', @filter
+    @filter = @model.root.filter("marks", (mark) -> mark?.folioId == folioId).sort((a,b) -> b.createdAt - a.createdAt)
+    @model.ref 'marks', @filter
+    ###
     @model.start 'marks', @model.scope('marks'), (marks) ->
       array = []
       for id,mark of marks
         continue unless mark
         array.push mark
       return array
+    ###
 
     @scrolling = @model.at 'scrolling'
     @scrollStart = @model.at 'scrollStart'
@@ -77,7 +79,6 @@ module.exports = class Folio
     
   clicked: (evt) ->
     return unless evt?.pageX?
-    console.log "click EVENT", evt
     x = evt.pageX - @offsetX.get()
     y = evt.pageY - @offsetY.get()
     @addMark x, y
@@ -94,6 +95,7 @@ module.exports = class Folio
       w: width
       h: width
     }
+    @model.set "editing", markId
     console.log "new mark", markId
 
 

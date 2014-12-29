@@ -6,13 +6,15 @@ module.exports = class Mark
     @offsetY = @model.at 'offsetY'
     @offsetY.setNull 0
     @mark = @model.at 'mark'
+    @mark.setNull "certainty", 100
     @editing = @model.at 'editing'
     @editing.setNull false
 
   create: ->
 
   click: (evt) ->
-    @editing.set !@editing.get()
+    @editing.set @mark.get "id"
+    console.log "mark:", @mark.get()
 
     evt.stopPropagation()
 

@@ -4,25 +4,46 @@
     on-click="click($event)"
     on-touchend="click($event)">
   </div>
-  {{if editing}}
+  {{if editing === mark.id}}
     <div as="editor"
       class="mark-editor"
       style="left:{{getX(mark, offsetX + 10)}}px;top:{{getY(mark, offsetY - mark.h/2)}}px;"
       on-click="editorClick($event)"
       on-touchend="editorClick($event)">
       <ul>
-      <li>
-       META DATA
-      </li>
-      <li class="delete" 
-        on-click="delete(mark, $event)"
-        on-touchend="delete(mark, $event)">
-        delete
+      <li class="metadata">
+        <select>
+          <option selected>Tremulus</option>
+          <option >Original</option>
+        </select>
+        <br>
+        <select>
+          <option selected>Value</option>
+          <option >.</option>
+          <option >,</option>
+          <option >!</option>
+          <option >:;</option>
+        </select>
+        <br>
+        <input type="checkbox">Converted
+        <br>
+        <select>
+          <option selected>Punctuation</option>
+        </select>
+        <br>
+        Certainty<br>
+        <input type="range" value="{{mark.certainty}}" min=0 max=100>
+        <div class="more">More</div>
       </li>
       <li class="close" 
         on-click="close($event)"
         on-touchend="close($event)">
         close 
+      </li>
+      <li class="delete" 
+        on-click="delete(mark, $event)"
+        on-touchend="delete(mark, $event)">
+        delete
       </li>
       </ul>
     </div>
