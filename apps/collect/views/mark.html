@@ -2,7 +2,9 @@
   <div class="mark" 
     style="left:{{getX(mark, offsetX)}}px;top:{{getY(mark, offsetY)}}px;width:{{mark.w}}px;height:{{mark.h}}px;"
     on-click="click($event)"
-    on-touchend="click($event)">
+    on-touchstart="touch($event)"
+    on-touchend="touched($event)"
+    on-touchmove="touching($event)">
   </div>
   {{if editing === mark.id}}
     <div as="editor"

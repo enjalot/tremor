@@ -10,13 +10,37 @@ module.exports = class Mark
     @editing = @model.at 'editing'
     @editing.setNull false
 
+    @dragging = @model.at 'dragging'
+
   create: ->
 
   click: (evt) ->
+    return unless evt
+    evt.stopPropagation()
     @editing.set @mark.get "id"
     console.log "mark:", @mark.get()
 
+  touch: (evt) ->
+    return unless evt
     evt.stopPropagation()
+    @editing.set @mark.get "id"
+    @dragging.set true
+
+
+  touching: (evt) ->
+    return unless evt
+    evt.stopPropagation()
+    evt.preventDefault()
+    if @dragging.get() and touch = evt.changedTouches[0]
+      @mark.set "x", touch.pageX - @offsetX.get()
+      @mark.set "y", touch.pageY - @offsetY.get()
+
+  touched: (evt) ->
+    return unless evt
+    evt.stopPropagation()
+    @dragging.set false
+
+
 
   getX: (mark, offset) ->
     return 0 unless mark

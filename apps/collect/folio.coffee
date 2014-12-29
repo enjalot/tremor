@@ -1,7 +1,6 @@
 # TODO:
 # dragging marks
 # inputing metadata
-# put marks in a collection
 
 module.exports = class Folio
   init: ->
