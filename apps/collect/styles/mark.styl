@@ -1,0 +1,38 @@
+.mark
+  border: 1px solid red
+  position: absolute
+  -webkit-touch-callout: disable 
+
+.mark-editor
+  editButtonHeight = 80px
+  position: absolute
+  -webkit-touch-callout: disable 
+  ul
+    list-style: none
+
+  li
+    padding: 10px
+    margin: 5px
+    border-left: 1px solid black
+    border-right: 1px solid black
+    border-top: 1px solid black
+    text-align: center
+    font-family: Courier, monospace
+    background-color: rgba(255, 255, 255, 0.7)
+    -webkit-touch-callout: disable 
+  li: active
+    background-color: rgba(205, 205, 255, 0.7)
+
+  .delete
+    background-color: red
+    color: white
+    height: editButtonHeight - 10
+    line-height: editButtonHeight - 10
+    font-size: 40px
+    text-transform: capitalize
+
+  .close
+    height: editButtonHeight
+    line-height: editButtonHeight
+    font-size: 50px
+    text-transform: capitalize

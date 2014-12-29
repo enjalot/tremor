@@ -1,0 +1,29 @@
+<index: data-element="mark">
+  <div class="mark" 
+    style="left:{{getX(mark, offsetX)}}px;top:{{getY(mark, offsetY)}}px;width:{{mark.w}}px;height:{{mark.h}}px;"
+    on-click="click($event)"
+    on-touchend="click($event)">
+  </div>
+  {{if editing}}
+    <div as="editor"
+      class="mark-editor"
+      style="left:{{getX(mark, offsetX + 10)}}px;top:{{getY(mark, offsetY - mark.h/2)}}px;"
+      on-click="editorClick($event)"
+      on-touchend="editorClick($event)">
+      <ul>
+      <li>
+       META DATA
+      </li>
+      <li class="delete" 
+        on-click="delete(mark, $event)"
+        on-touchend="delete(mark, $event)">
+        delete
+      </li>
+      <li class="close" 
+        on-click="close($event)"
+        on-touchend="close($event)">
+        close 
+      </li>
+      </ul>
+    </div>
+  {{/if}}

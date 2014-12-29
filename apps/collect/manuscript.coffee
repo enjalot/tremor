@@ -1,5 +1,3 @@
-app = require './index'
-
 module.exports = class Manuscript
   init: ->
     manuscriptId = @model.root.get "$render.params.manuscriptId"

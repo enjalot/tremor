@@ -10,9 +10,12 @@
     on-touchend="touched($event)">
     <img src="https://s3.amazonaws.com/medieval/tremor/{{manuscriptId}}/{{folio.index}}{{folio.side}}.png">
     
-
-    {{each marks as #mark}}
-      <div class="mark" style="left:{{#mark.x-#mark.w/2}}px;top:{{#mark.y-#mark.h/2}}px;width:{{#mark.w}}px;height:{{#mark.h}}px;">
-      </div>
-    {{/each}}
+    {{on marks}} <!-- why do we have to do this hacky hack? -->
+      {{each marks as #mark}}
+        <view is="mark" 
+          mark="{{#mark}}" 
+          offsetX="{{offsetX}}"
+          offsetY="{{offsetY}}"></view>
+      {{/each}}
+    {{/on}}
   </div>
