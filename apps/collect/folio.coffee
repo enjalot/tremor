@@ -1,5 +1,4 @@
 # TODO:
-# dragging marks
 # inputing metadata
 
 module.exports = class Folio
@@ -61,7 +60,6 @@ module.exports = class Folio
       @scrolling.set true
 
   touched: (evt) ->
-    console.log "EVT", evt
     return unless evt
     if @scrolling.get()
       if evt.touches.length == 0

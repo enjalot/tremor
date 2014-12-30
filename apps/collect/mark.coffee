@@ -40,6 +40,23 @@ module.exports = class Mark
     evt.stopPropagation()
     @dragging.set false
 
+  mousedown: (evt) ->
+    return unless evt
+    evt.stopPropagation()
+    @dragging.set true
+
+  moving: (evt) ->
+    return unless evt
+    evt.stopPropagation()
+    console.log "dragging", @dragging.get()
+    if @dragging.get()
+      @mark.set "x", evt.pageX - @offsetX.get()
+      @mark.set "y", evt.pageY - @offsetY.get()
+
+  mouseup: (evt) ->
+    return unless evt
+    evt.stopPropagation()
+    @dragging.set false
 
 
   getX: (mark, offset) ->
