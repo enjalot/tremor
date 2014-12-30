@@ -1,4 +1,25 @@
 
+AUTHORS = [
+  'tremulous'
+  'original'
+]
+
+INTERVENTIONS = [
+  'punctuation'
+  'gloss'
+  'marginal gloss'
+  'annotation'
+  'pronounciation'
+]
+
+VALUES = [
+  '.'
+  '!'
+  ':;'
+  '.;'
+  ','
+]
+
 module.exports = class Mark
   init: ->
     @offsetX = @model.at 'offsetX'
@@ -9,8 +30,22 @@ module.exports = class Mark
     @mark.setNull "certainty", 100
     @editing = @model.at 'editing'
     @editing.setNull false
-
     @dragging = @model.at 'dragging'
+    @dragging.setNull false
+
+    # dropdown data
+    @authors = @model.at 'authors'
+    @authors.set AUTHORS
+    @mark.setNull 'author', AUTHORS[0]
+
+    @interventions = @model.at 'interventions'
+    @interventions.set INTERVENTIONS
+    @mark.setNull 'intervention', INTERVENTIONS[0]
+
+    @values = @model.at 'values'
+    @values.set VALUES
+    @mark.setNull 'value', VALUES[0]
+
 
   create: ->
 
@@ -77,3 +112,6 @@ module.exports = class Mark
 
   editorClick: (evt) ->
     evt.stopPropagation()
+
+  convertClick: ->
+    @mark.set "converted", !@mark.get("converted")

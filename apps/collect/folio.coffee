@@ -1,5 +1,6 @@
 # TODO:
-# inputing metadata
+# default certain fields based on last input mark
+# extra metadata
 
 module.exports = class Folio
   init: ->

@@ -16,28 +16,37 @@
       on-click="editorClick($event)"
       on-touchend="editorClick($event)">
       <ul>
-      <li class="metadata">
-        <select>
-          <option selected>Tremulus</option>
-          <option >Original</option>
+      <li class="origin">
+        <select as="authorSelect">
+          {{each authors as #author}}
+            <option value="{{#author}}" selected="{{mark.author == #author}}">{{#author}}</option>
+          {{/each}}
         </select>
-        <br>
-        <select>
-          <option selected>Value</option>
-          <option >.</option>
-          <option >,</option>
-          <option >!</option>
-          <option >:;</option>
+      </li>
+      <li class="value">
+        <select as="valueSelect">
+          {{each values as #value}}
+            <option value="{{#value}}" selected="{{mark.value == #value}}">{{#value}}</option>
+          {{/each}}
         </select>
-        <br>
-        <input type="checkbox">Converted
-        <br>
-        <select>
-          <option selected>Punctuation</option>
+      </li>
+      <li class="converted"
+        on-click="convertClick()"
+        on-touchend="convertClick()">
+        <input type="checkbox" checked="{{mark.converted}}">Converted
+      </li>
+      <li class="intervention">
+        <select as="interventionSelect">
+          {{each interventions as #intervention}}
+          <option value="{{#intervention}}" selected="{{mark.intervention == #intervention}}">{{#intervention}}</option>
+          {{/each}}
         </select>
-        <br>
+      </li>
+      <li class="certainty">
         Certainty<br>
         <input type="range" value="{{mark.certainty}}" min=0 max=100>
+      </li>
+      <li class="more">
         <div class="more">More</div>
       </li>
       <li class="close" 
