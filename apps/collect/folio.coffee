@@ -64,6 +64,11 @@ module.exports = class Folio
 
   create: ->
     window.PAGE = @
+    @model.set "touchDevice", false
+    if navigator.userAgent.match(/iPad/i)
+      @model.set "touchDevice", true
+    if navigator.userAgent.match(/iPhone/i)
+      @model.set "touchDevice", true
 
     # get the "canvas" location in the page 
     # so we can draw our marks absolutely positioned
@@ -105,6 +110,7 @@ module.exports = class Folio
     
   clicked: (evt) ->
     return unless evt?.pageX?
+    return if @model.get "touchDevice"
     x = evt.pageX - @offsetX.get()
     y = evt.pageY - @offsetY.get()
     @addMark x, y
@@ -131,6 +137,5 @@ module.exports = class Folio
     markId = @model.root.add "marks", newMark
     @editing.set markId
     @lastCreated.set markId
-    console.log "new mark", markId
 
 

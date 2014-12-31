@@ -83,7 +83,6 @@ module.exports = class Mark
   moving: (evt) ->
     return unless evt
     evt.stopPropagation()
-    console.log "dragging", @dragging.get()
     if @dragging.get()
       @mark.set "x", evt.pageX - @offsetX.get()
       @mark.set "y", evt.pageY - @offsetY.get()
@@ -105,6 +104,7 @@ module.exports = class Mark
   delete: (mark, evt) ->
     return unless mark
     evt.stopPropagation()
+    evt.preventDefault()
     @model.root.del "marks.#{mark.id}"
 
   close: (evt) ->
