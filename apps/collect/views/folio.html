@@ -1,6 +1,12 @@
 <index:>
   <div class="head">
-    <h1>{{manuscriptId}} - folio {{folio.index}}{{folio.side}}</h1>
+    <h1><a href="/folios/{{manuscriptId}}">{{manuscriptId}}</a> - folio {{folio.index}}{{folio.side}}</h1>
+    <div class="nav">
+      <a href="/folios/{{manuscriptId}}/{{previousIndex}}/{{previousSide}}">
+      ({{previousIndex}}{{previousSide}}) previous</a> - ({{folio.index}}{{folio.side}}) - &nbsp;
+      <a href="/folios/{{manuscriptId}}/{{nextIndex}}/{{nextSide}}">
+      next ({{nextIndex}}{{nextSide}})</a>
+    </div>
   </div>
 
   <div class="img-container" as="container"

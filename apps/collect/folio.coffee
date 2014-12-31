@@ -1,13 +1,41 @@
 # TODO:
 # default certain fields based on last input mark
+# indicate # of marks on manuscript page
 # extra metadata
 
 module.exports = class Folio
   init: ->
-    folioId = @model.root.get "$render.params.folioId"
     manuscriptId = @model.root.get "$render.params.manuscriptId"
+    # slightly convoluted logic to pick out the folio from the index and side
+    index = +@model.root.get "$render.params.index"
+    side = @model.root.get "$render.params.side"
+    folios = @model.root.get "folios"
+    for id,folio of folios
+      if folio?.index == index and folio?.side == side and folio?.manuscriptId == manuscriptId
+        folioId = id
+        break
+
     @model.set "folioId", folioId
     @model.set "manuscriptId", manuscriptId
+
+    if side == "r"
+      nextIndex = index
+      nextSide = "v"
+      previousIndex = index - 1
+      previousSide = "v"
+    else # side == "v"
+      nextIndex = index + 1
+      nextSide = "r"
+      previousIndex = index
+      previousSide = "r"
+    @model.set "nextIndex", nextIndex
+    @model.set "nextSide", nextSide
+    @model.set "previousIndex", previousIndex
+    @model.set "previousSide", previousSide
+
+
+    @editing = @model.at "editing"
+    @lastCreated = @model.at "lastCreated"
 
     # get a local reference to this folio
     @folio = @model.at "folio"
@@ -84,7 +112,8 @@ module.exports = class Folio
 
   addMark: (x, y) ->
     width = 40 # TODO parameterize
-    markId = @model.root.add "marks", {
+
+    newMark = {
       folioId: @model.get "folioId"
       manuscriptId: @model.get "manuscriptId"
       createdAt: +new Date()
@@ -93,7 +122,15 @@ module.exports = class Folio
       w: width
       h: width
     }
-    @model.set "editing", markId
+    lastId = @lastCreated.get()
+    lastMark = @model.root.get "marks.#{lastId}"
+    if lastId and lastMark
+      newMark.author = lastMark.author if lastMark.author
+      newMark.intervention = lastMark.intervention if lastMark.intervention
+
+    markId = @model.root.add "marks", newMark
+    @editing.set markId
+    @lastCreated.set markId
     console.log "new mark", markId
 
 

@@ -104,10 +104,11 @@ module.exports = class Mark
 
   delete: (mark, evt) ->
     return unless mark
-    @model.root.del "marks.#{mark.id}"
     evt.stopPropagation()
+    @model.root.del "marks.#{mark.id}"
 
   close: (evt) ->
+    evt.stopPropagation()
     @editing.set false
 
   editorClick: (evt) ->
@@ -115,3 +116,4 @@ module.exports = class Mark
 
   convertClick: ->
     @mark.set "converted", !@mark.get("converted")
+    evt.stopPropagation()

@@ -4,7 +4,7 @@
   <div class="folios">
   {{each folios as #folio}}
     <div class="folio">
-      <a href="/folios/{{manuscriptId}}/{{#folio.id}}">
+      <a href="/folios/{{manuscriptId}}/{{#folio.index}}/{{#folio.side}}">
         <img width="125px" height="180px" src="https://s3.amazonaws.com/medieval/tremor/{{manuscriptId}}/thumbs/{{#folio.index}}{{#folio.side}}_tn.jpg">
         <div class="span-container">
         <span>{{#folio.index}}{{#folio.side}}</span><br>

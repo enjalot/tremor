@@ -26,9 +26,9 @@ app.get '/folios/:manuscriptId', (page, model, params, next) ->
     console.log err if err
     page.render 'manuscript'
 
-app.get '/folios/:manuscriptId/:folioId', (page, model, params, next) ->
+app.get '/folios/:manuscriptId/:index/:side', (page, model, params, next) ->
   # grab the specific folio
-  folioQuery = model.query "folios", {_id: params.folioId}
+  folioQuery = model.query "folios", {manuscriptId: params.manuscriptId, index: +params.index, side: params.side}
   markQuery = model.query "marks", {folioId: params.folioId, manuscriptId: params.manuscriptId0}
   model.subscribe folioQuery, markQuery, "manuscripts.#{params.manuscriptId}", (err) ->
     console.log err if err
