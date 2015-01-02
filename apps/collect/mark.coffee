@@ -17,8 +17,11 @@ VALUES = [
   '!'
   ':;'
   '.;'
+  ';'
   ','
 ]
+
+MARK_WIDTH = 20
 
 module.exports = class Mark
   init: ->
@@ -28,6 +31,9 @@ module.exports = class Mark
     @offsetY.setNull 0
     @mark = @model.at 'mark'
     @mark.setNull "certainty", 100
+    @width = @model.at 'width'
+    @width.set MARK_WIDTH
+
     @editing = @model.at 'editing'
     @editing.setNull false
     @dragging = @model.at 'dragging'
@@ -95,11 +101,16 @@ module.exports = class Mark
 
   getX: (mark, offset) ->
     return 0 unless mark
-    return mark.x-mark.w/2 + offset
+    return mark.x-@width.get()/2 + offset
 
   getY: (mark, offset) ->
     return 0 unless mark
-    return mark.y-mark.h/2 + offset
+    return mark.y-@width.get()/2 + offset
+
+  color: (mark) ->
+    if mark?.author == "tremulous"
+      return 'yellow'
+    return 'blue'
 
   delete: (mark, evt) ->
     return unless mark

@@ -125,8 +125,6 @@ module.exports = class Folio
       createdAt: +new Date()
       x: x
       y: y
-      w: width
-      h: width
     }
     lastId = @lastCreated.get()
     lastMark = @model.root.get "marks.#{lastId}"

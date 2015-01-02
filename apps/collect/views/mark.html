@@ -1,6 +1,6 @@
 <index: data-element="mark">
   <div class="mark" 
-    style="left:{{getX(mark, offsetX)}}px;top:{{getY(mark, offsetY)}}px;width:{{mark.w}}px;height:{{mark.h}}px;"
+    style="left:{{getX(mark, offsetX)}}px;top:{{getY(mark, offsetY)}}px;width:{{width}}px;height:{{width}}px;border: 3px solid {{color(mark)}}"
     on-click="click($event)"
     on-mousedown="mousedown($event)"
     on-mouseup="mouseup($event)"
@@ -12,7 +12,7 @@
   {{if editing === mark.id}}
     <div as="editor"
       class="mark-editor"
-      style="left:{{getX(mark, offsetX + 40)}}px;top:{{getY(mark, offsetY - mark.h/2)}}px;{{if dragging}}pointer-events:none;{{/if}}"
+      style="left:{{getX(mark, offsetX + width)}}px;top:{{getY(mark, offsetY - width/2)}}px;{{if dragging}}pointer-events:none;{{/if}}"
       on-click="editorClick($event)"
       on-touchend="editorClick($event)">
       <ul>
