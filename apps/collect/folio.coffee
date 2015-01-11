@@ -100,6 +100,9 @@ module.exports = class Folio
         @scrolling.set false
       return
 
+    if @editing.get()
+      return @editing.set false
+
     touch = evt.changedTouches[0]
     # we are capturing all touch at the top level svg, instead of inside it
     # can't seem to get touch events on svg from derby right now.
@@ -111,6 +114,10 @@ module.exports = class Folio
   clicked: (evt) ->
     return unless evt?.pageX?
     return if @model.get "touchDevice"
+
+    if @editing.get()
+      return @editing.set false
+    
     x = evt.pageX - @offsetX.get()
     y = evt.pageY - @offsetY.get()
     @addMark x, y

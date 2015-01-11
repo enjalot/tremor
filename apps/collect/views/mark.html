@@ -30,10 +30,12 @@
           {{/each}}
         </select>
       </li>
-      <li class="converted"
-        on-click="convertClick()"
-        on-touchend="convertClick()">
-        <input type="checkbox" checked="{{mark.converted}}">Converted
+      <li class="converted {{if mark.converted}}is-converted{{/if}}"
+        on-click="convertClick()">
+        <span>Converted</span>
+        {{if mark.converted}}
+          <view is="brush-icon"></view>
+        {{/if}}
       </li>
       <li class="intervention">
         <select as="interventionSelect">
@@ -43,9 +45,10 @@
         </select>
       </li>
       <li class="certainty">
-        Certainty<br>
+        <span>Certainty</span><br>
         <input type="range" value="{{mark.certainty}}" min=0 max=100>
       </li>
+      <!--
       <li class="more">
         <div class="more">More</div>
       </li>
@@ -54,11 +57,28 @@
         on-touchend="close($event)">
         close 
       </li>
+      -->
       <li class="delete" 
         on-click="delete(mark, $event)"
         on-touchend="delete(mark, $event)">
-        delete
+        <span>DELETE</span>
       </li>
       </ul>
     </div>
   {{/if}}
+
+  <!-- 
+  Icon by Björn Andersson 
+  http://thenounproject.com/term/brush/47079/
+  -->
+  <brush-icon:>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="5.0 -10.0 100.0 135.0" enable-background="new 0 0 100 100" xml:space="preserve" height="40px" width="40px">
+    <g>
+      <g>
+        <path d="M44.8,70.1c0.7-0.5,1.7-1.1,2.8-1.9l-9.1-9.1c-0.8,1.2-1.4,2.1-1.9,2.9c1.8,0.7,3.5,1.7,5,3.2    C43.1,66.6,44.2,68.3,44.8,70.1z"/>
+        <path d="M50.2,66.1c0,0,6.6-5.2,9.2-7.8c8.1-8.1,37.9-40.8,33.9-44.8c-4-4-36.8,25.9-44.8,33.9c-2.6,2.6-7.8,9.2-7.8,9.2    L50.2,66.1z"/>
+      </g>
+      <path d="M39.4,67.4c-3.8-3.8-10.7-3.2-13.9,0c-2.6,2.6-2.8,4.6-2.8,13.3c0,2.6-3.3,4.6-3.3,4.6c0,0,10.6,5.4,20-4   C43.2,77.5,43.2,71.3,39.4,67.4z"/>
+      <path d="M14.8,68.6C14.8,68.6,14.8,68.6,14.8,68.6c-0.1-0.2-0.2-0.2-0.2-0.2l0,0c-0.8-1.1-2.2-1.8-3.7-1.8c-2.6,0-4.6,2.1-4.6,4.6   c0,2.4,1.9,4.4,4.3,4.6c0,0,0.1,0,0.1,0c0.1,0,0.2,0,0.3,0c0,0,0.1,0,0.1,0c0,0,0.1,0,0.1,0c4.6-0.4,6,2.7,6,2.7   C17.2,72.5,15.4,69.5,14.8,68.6z"/>
+    </g>
+  </svg>

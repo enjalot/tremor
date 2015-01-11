@@ -116,6 +116,7 @@ module.exports = class Mark
     return unless mark
     evt.stopPropagation()
     evt.preventDefault()
+    @editing.set false
     @model.root.del "marks.#{mark.id}"
 
   close: (evt) ->

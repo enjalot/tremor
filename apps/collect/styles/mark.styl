@@ -1,3 +1,5 @@
+borderColor = #ebebeb
+
 .mark
   border: 1px solid red
   position: absolute
@@ -13,21 +15,25 @@
   user-select: none
   -webkit-user-select: none
   z-index: 100
+  font-family: 'Source Sans Pro', sans-serif;
+
   ul
     list-style: none
     padding: 0
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.5);
 
   li
     padding: 5px 10px
     margin: 0px
     min-height: 40px
-    border-left: 1px solid black
-    border-right: 1px solid black
-    border-top: 1px solid black
-    text-align: center
-    font-family: Courier, monospace
+    border-left: 1px solid borderColor
+    border-right: 1px solid borderColor
+    border-top: 1px solid borderColor
     background-color: rgba(255, 255, 255, 0.9)
     -webkit-touch-callout: disable 
+    font-size: 30px
 
   li: active
     background-color: rgba(205, 205, 255, 0.9)
@@ -36,17 +42,33 @@
     font-size: 30px
     border: 0
     outline: 0
+    width: 100%
+
+  .certainty
+    input[type=range]
+      width: 100%
+    padding-bottom: 15px
+    span
+      margin-left: 8px
+
+  .converted
+    svg
+      position: absolute
+      margin-top: 0px
+    span
+      margin-left: 8px
+
+  .is-converted
+    background-color: rgb(200, 200, 255, 0.9)
 
   .delete
-    margin-top: 10px
-    background-color: rgba(255, 0, 0, 0.7)
-    color: white
+    background-color: rgba(250, 200, 200, 0.9)
     height: editButtonHeight - 20
     line-height: editButtonHeight - 20
-    font-size: 40px
-    text-transform: capitalize
     cursor: pointer
-    border-bottom: 1px solid black
+    border-bottom: 1px solid borderColor
+    span
+      margin-left: 8px
 
   .close
     padding: 10px 10px
