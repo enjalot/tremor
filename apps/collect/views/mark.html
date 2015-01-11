@@ -32,7 +32,7 @@
       </li>
       <li class="converted {{if mark.converted}}is-converted{{/if}}"
         on-click="convertClick()">
-        <span>Converted</span>
+        <span>converted</span>
         {{if mark.converted}}
           <view is="brush-icon"></view>
         {{/if}}
@@ -45,7 +45,7 @@
         </select>
       </li>
       <li class="certainty">
-        <span>Certainty</span><br>
+        <span>certainty</span><br>
         <input type="range" value="{{mark.certainty}}" min=0 max=100>
       </li>
       <!--
