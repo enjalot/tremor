@@ -4,7 +4,8 @@ derby = require 'derby'
 http  = require 'http'
 chalk = require 'chalk'
 
-publicDir = process.cwd() + '/public'
+DIRNAME = process.env.DIRNAME or process.cwd()
+publicDir = DIRNAME + '/public'
 
 derby.run () ->
   require './server/config'
