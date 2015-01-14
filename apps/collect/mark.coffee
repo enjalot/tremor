@@ -9,7 +9,8 @@ INTERVENTIONS = [
   'gloss'
   'marginal gloss'
   'annotation'
-  'pronounciation'
+  'pronunciation'
+  'word division'
 ]
 
 VALUES = [
