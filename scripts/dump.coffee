@@ -21,11 +21,15 @@ if !name
     console.log "run with manuscript id to dump marks"
     process.exit()
 else
-  query = model.query "marks", {manuscriptId: name}
-  query.fetch ->
-    marks = query.get()
+  marksQuery = model.query "marks", {manuscriptId: name}
+  foliosQuery = model.query "folios", {manuscriptId: name}
+  model.fetch marksQuery, foliosQuery, ->
+    marks = marksQuery.get()
     console.log "# marks", marks.length
     str = JSON.stringify(marks)
     fs.writeFileSync './marks.json', str
+    folios = model.get("folios")
+    str = JSON.stringify(folios)
+    fs.writeFileSync './folios.json', str
 
     process.exit()
