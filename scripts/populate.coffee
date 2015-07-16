@@ -19,11 +19,8 @@ model = store.createModel()
 
 path = "manuscripts.#{name}"
 model.fetch path, ->
-  if model.get path
-    console.log "already populated that manuscript"
-    return process.exit()
-
-  model.add "manuscripts", {id: name, createdAt: +new Date(), folios: +num}
+  if !model.get path
+    model.add "manuscripts", {id: name, createdAt: +new Date(), folios: +num}
 
   [1..num].forEach (i) ->
     # create a folio
