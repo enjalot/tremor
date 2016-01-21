@@ -4,7 +4,13 @@ module.exports = class Manuscript
     @model.set "manuscriptId", manuscriptId
     @filter = @model.root.filter("folios", (folio) -> folio.manuscriptId == manuscriptId)
       .sort (a,b) ->
-        a.index - b.index
+        if(a.index == b.index)
+          if a.side == "r"
+            return -1
+          else
+            return 1
+
+        return a.index - b.index
 
     @model.ref "folios", @filter
 
