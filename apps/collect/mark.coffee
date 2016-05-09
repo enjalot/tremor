@@ -45,6 +45,7 @@ VALUES = {
     'ge⇨i'
     'g⇨i'
     'g⇨þ'
+    'g⇨y'
     'g⇨w'
     'g⇨ȝ'
     'i⇨e'
