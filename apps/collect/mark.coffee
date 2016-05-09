@@ -109,8 +109,11 @@ module.exports = class Mark
     @model.start "values", "mark.intervention", (interventionType) ->
       return VALUES[interventionType]
     @values = @model.at 'values'
+    ###
     @values.on "all", =>
+      console.log("values!", @values.get())
       @mark.set 'value', @values.get 0
+    ###
     @mark.setNull 'value', @values.get 0
 
     sizeChange = =>
@@ -125,7 +128,13 @@ module.exports = class Mark
         @mark.set 'width', MARK_WIDTH
         @mark.set 'height', MARK_WIDTH
 
-    @mark.on "change", "intervention", sizeChange
+    @mark.on "change", "intervention", =>
+      sizeChange()
+      setTimeout( =>
+        console.log "intervention change", @values.get()
+        @mark.set 'value', @values.get 0
+      , 0)
+
     sizeChange()
 
 
@@ -195,7 +204,7 @@ module.exports = class Mark
       @mark.set "y", touch.pageY - @offsetY.get()
 
   touched: (evt) ->
-    return unless evt 
+    return unless evt
     evt.stopPropagation()
     @dragging.set false
     @resizeDragging.set false
